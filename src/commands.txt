@@ -1,8 +1,14 @@
-python -m venv .venv
-.venv\scripts\activate
+https://docs.python.org/3/library/venv.html
+python -m venv foldername =>create virtual environment
+python -m venv .venv =>create virtual environment
+.venv\scripts\activate => activating virtual environment
+source .venv/bin/activate =>=> ubuntu activating virtual environment
+deactivate => deactivating virtual environment
 https://pypi.org/project/requests/
-pip list
-pip uninstall requests
+pip list => listout installed packages
+pip install django==4.2 =>install specific package version
+pip install django => install latest version
+pip uninstall django => uninstall packages
 pip install -r prabhu.txt
 
 https://openrouter.ai/
@@ -34,3 +40,9 @@ completion = client.chat.completions.create(
 )
 
 print(completion.choices[0].message.content)
+
+
+
+a=10
+a="prabhu"
+print(a)
