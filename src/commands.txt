@@ -46,3 +46,6 @@ print(completion.choices[0].message.content)
 a=10
 a="prabhu"
 print(a)
+
+
+
