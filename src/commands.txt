@@ -1,0 +1,48 @@
+https://docs.python.org/3/library/venv.html
+python -m venv foldername =>create virtual environment
+python -m venv .venv =>create virtual environment
+.venv\scripts\activate => activating virtual environment
+source .venv/bin/activate =>=> ubuntu activating virtual environment
+deactivate => deactivating virtual environment
+https://pypi.org/project/requests/
+pip list => listout installed packages
+pip install django==4.2 =>install specific package version
+pip install django => install latest version
+pip uninstall django => uninstall packages
+pip install -r prabhu.txt
+
+https://openrouter.ai/
+https://openrouter.ai/settings/keys
+"deepseek/deepseek-r1-0528:free",
+
+
+https://openrouter.ai/docs/quickstart
+Using the OpenAI SDK=>
+from openai import OpenAI
+
+client = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key="", #put openrouter api key here
+)
+
+completion = client.chat.completions.create(
+  extra_headers={
+    "HTTP-Referer": "<YOUR_SITE_URL>", # Optional. Site URL for rankings on openrouter.ai.
+    "X-Title": "<YOUR_SITE_NAME>", # Optional. Site title for rankings on openrouter.ai.
+  },
+  model="deepseek/deepseek-r1-0528:free",
+  messages=[
+    {
+      "role": "user",
+      "content": "What is the meaning of life?"
+    }
+  ]
+)
+
+print(completion.choices[0].message.content)
+
+
+
+a=10
+a="prabhu"
+print(a)
