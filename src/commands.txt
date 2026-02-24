@@ -9,7 +9,7 @@ pip list => listout installed packages
 pip install django==4.2 =>install specific package version
 pip install django => install latest version
 pip uninstall django => uninstall packages
-pip install -r prabhu.txt
+pip install -r requirements.txt
 
 https://openrouter.ai/
 https://openrouter.ai/settings/keys
@@ -46,3 +46,6 @@ print(completion.choices[0].message.content)
 a=10
 a="prabhu"
 print(a)
+
+
+
