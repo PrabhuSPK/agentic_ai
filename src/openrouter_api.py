@@ -2,9 +2,13 @@ import requests
 import json
 from openai import OpenAI
 import time
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
+BASE_URL = os.getenv("BASE_URL")
 # Your OpenRouter API key
-OPENROUTER_API_KEY = "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" #put openrouter api key here
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 # Get user input
 user_prompt = input("Enter your prompt: ")
@@ -14,7 +18,7 @@ start_time = time.time()
 
 try:
     client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
+        base_url=BASE_URL,
         api_key=OPENROUTER_API_KEY,
         timeout=30.0  # 30 second timeout
     )
