@@ -6,9 +6,9 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-BASE_URL = os.getenv("BASE_URL")
-# Your OpenRouter API key
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+BASE_URL = os.getenv("BASE_URL") or "https://openrouter.ai/api/v1"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY", "")
+MODEL = os.getenv("MODEL") or "openrouter/auto"
 
 # Get user input
 user_prompt = input("Enter your prompt: ")
@@ -23,12 +23,25 @@ try:
         timeout=30.0  # 30 second timeout
     )
 
+    try:
+        models = client.models.list()
+        available = {m.id for m in models.data}
+        if MODEL not in available:
+            free_models = [m.id for m in models.data if ":free" in m.id]
+            print("Configured model not available:", MODEL)
+            if free_models:
+                print("Available free models:", ", ".join(free_models[:10]))
+            MODEL = "openrouter/auto"
+            print("Falling back to:", MODEL)
+    except Exception:
+        pass
+
     completion = client.chat.completions.create(
         extra_headers={
             "HTTP-Referer": "http://localhost:8000",  # Optional. Site URL for rankings
             "X-Title": "Local Testing",  # Optional. Site title for rankings
         },
-        model="deepseek/deepseek-r1-0528:free",
+        model=MODEL,
         messages=[
             {
                 "role": "user",
