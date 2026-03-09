@@ -16,20 +16,6 @@ llm_config = {
     ]
 }
 
-# agent1 = ConversableAgent(
-#     "prabhu",
-#     llm_config=llm_config,
-#     system_message=(
-#         "I have a number in my mind, and you will try to guess it. "
-#         "If I say 'too high', you should guess a much lower number. "
-#         "If I say 'high', you should guess a slightly lower number. "
-#         "If I say 'too low', you should guess a much higher number. "
-#         "If I say 'low', you should guess a slightly higher number. "
-#         "Keep adjusting your guess based on the feedback until you get it right."
-#     ),
-#     human_input_mode="NEVER"
-#     )
-
 agent2 = ConversableAgent(
     "sara",
     llm_config=llm_config,
@@ -43,7 +29,6 @@ agent2 = ConversableAgent(
         "If I guess correctly, say 'correct'."
     ),
     human_input_mode="NEVER",
-    # max_consecutive_auto_reply=2
     is_termination_msg= lambda response:"75" in response["content"]
     )
 
@@ -57,12 +42,7 @@ human_proxy = ConversableAgent(
 human_proxy.initiate_chat(
     agent2,
     message="5",
-    # max_turns=2
+   
 )
 
-#initiate chat params - max_turns=1
-
-#agentwise 
-#1. max_consecutive_auto_reply=1
-#2. is_termination_msg
 
